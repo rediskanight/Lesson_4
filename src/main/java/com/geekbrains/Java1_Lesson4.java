@@ -1,3 +1,4 @@
+//4.1
 package com.geekbrains;
 //ctrl + alt + L - формат кода
 
@@ -43,27 +44,18 @@ public class Java1_Lesson4 {
         System.out.println("Игра окончена");
     }
 
-
-
     private static boolean checkWin(char symbol) {
-        if (MAP[0][0] == symbol && MAP[0][1] == symbol && MAP[0][2] == symbol)
-            return true;
-        if (MAP[1][0] == symbol && MAP[1][1] == symbol && MAP[1][2] == symbol)
-            return true;
-        if (MAP[2][0] == symbol && MAP[2][1] == symbol && MAP[2][2] == symbol)
-            return true;
-        if (MAP[0][0] == symbol && MAP[1][0] == symbol && MAP[2][0] == symbol)
-            return true;
-        if (MAP[0][1] == symbol && MAP[1][1] == symbol && MAP[2][1] == symbol)
-            return true;
-        if (MAP[0][2] == symbol && MAP[1][2] == symbol && MAP[2][2] == symbol)
-            return true;
-        if (MAP[0][0] == symbol && MAP[1][1] == symbol && MAP[2][2] == symbol)
-            return true;
-        if (MAP[2][0] == symbol && MAP[1][1] == symbol && MAP[0][2] == symbol)
+        for (int i = 0; i < SIZE; i++) {
+            if (MAP[i][0] == symbol && MAP[i][1] == symbol && MAP[i][2] == symbol)
+                return true;
+        }
+        for (int i = 0; i < SIZE; i++) {
+            if (MAP[0][i] == symbol && MAP[1][i] == symbol && MAP[2][i] == symbol)
+                return true;
+        }
+        if (MAP[1][1] == symbol && (MAP[2][2] == symbol && MAP[0][0] == symbol || MAP[2][0] == symbol && MAP[0][2] == symbol))
             return true;
         return false;
-
     }
 
     private static boolean isMApFull() {
@@ -83,7 +75,7 @@ public class Java1_Lesson4 {
             x = RANDOM.nextInt(SIZE);
             y = RANDOM.nextInt(SIZE);
         } while (!isCellValid(x, y));
-        System.out.println("Компьютер сходил в точку" + (x + 1) + " " + (y + 1));
+        System.out.println("Компьютер сходил в точку " + (x + 1) + " " + (y + 1));
         MAP[y][x] = DOT_0;
     }
 
